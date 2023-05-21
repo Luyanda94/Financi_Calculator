@@ -1,7 +1,6 @@
 import math
 print("Select an option from\n1.Investment \n2.Bond")
 #Input from user starts conditional statements
-
 inv_bond = input(str("Enter either Investment or Bond\n" )).lower()
 if inv_bond  == "investment":
    if True:
@@ -21,7 +20,7 @@ if inv_bond  == "investment":
             total = simple_compound
             print (f"Interest earned over {time} years: {total:.2f}".format())
 
-#Bond is another conditional
+#Bond is another conditional statement
 elif inv_bond == "bond":
             if True:
                 pri = float(input("Enter the current value of the house: \n"))

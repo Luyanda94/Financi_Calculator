@@ -1,33 +1,37 @@
 import math
-print("Select an option from\n1.Investment \n2.Bond")
-#Input from user starts conditional statements
-inv_bond = input(str("Enter either Investment or Bond\n" )).lower()
-if inv_bond  == "investment":
-   if True:
-        pr = float(input("Enter principal amount for investment:\n"))
-        rate = float(input("Enter amount of interest rate: \n" ))
-        r = (rate/100) / 12
-        time = float(input("Enter duration for investment in years: \n"))
-        simple_compound = str(input("Select either 'Simple' or 'Compound' interest. \n")).lower()
 
-        if simple_compound == "simple":
-            "simple" == simple_compound
-            simple_compound = pr*(1 + r * time)
-            total = simple_compound
-            print (f"Interest earned over {time} years: {total:.2f}".format())
-        elif simple_compound:
-            simple_compound = pr*math.pow((1+r),time)
-            total = simple_compound
-            print (f"Interest earned over {time} years: {total:.2f}".format())
+def calculate_investment(principal, rate, time, simple_compound):
+    r = (rate / 100) / 12
 
-#Bond is another conditional statement
+    if simple_compound == "simple":
+        total = principal * (1 + r * time)
+    else:
+        total = principal * math.pow((1 + r), time)
+    
+    return total
+
+def calculate_bond(pri, interest_rate, num_months):
+    i = ((interest_rate / 100) / 12) / 12
+    monthly_repayment = (i * pri) / (1 - math.pow(1 + i, -num_months))
+    return monthly_repayment
+
+print("Select an option:\n1. Investment\n2. Bond")
+inv_bond = input("Enter 'Investment' or 'Bond': ").lower()
+
+if inv_bond == "investment":
+    principal = float(input("Enter principal amount for investment: "))
+    rate = float(input("Enter interest rate: "))
+    time = float(input("Enter duration for investment in years: "))
+    simple_compound = input("Select 'Simple' or 'Compound' interest: ").lower()
+
+    interest_earned = calculate_investment(principal, rate, time, simple_compound)
+    print(f"Interest earned over {time} years: {interest_earned:.2f}")
 elif inv_bond == "bond":
-            if True:
-                pri = float(input("Enter the current value of the house: \n"))
-                intr = float(input("Enter the interest rate: \n" ))
-                i = ((intr/100)/12)/12
-                no = float(input("Enter the duration in months: \n"))
-                monthly = float(math.floor((i*pri)/(1 - (1+i)**(-no))))
-                print(f"Monthly repayment: {monthly:.2f}".format())
+    pri = float(input("Enter the current value of the house: "))
+    interest_rate = float(input("Enter the interest rate: "))
+    num_months = float(input("Enter the duration in months: "))
+
+    monthly_repayment = calculate_bond(pri, interest_rate, num_months)
+    print(f"Monthly repayment: {monthly_repayment:.2f}")
 else:
     print("Enter a valid input.")
